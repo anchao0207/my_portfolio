@@ -8,7 +8,7 @@
 
 .experience{
   position: fixed;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 }
 
@@ -30,10 +30,107 @@
   position: relative;
 }
 
+/*Section Formatting ---------------------------------------------------------------------------------*/
+.section-margin{
+  height: 100rem;
+  width:100%;
+}
+
+.section{
+  width: 50%;
+  padding: 20rem 4%;
+  margin: 0;
+  background-color: var(--primary-color);
+}
+
+.left{
+  margin-right: auto;
+}
+
+.right{
+  margin-left: auto;
+}
+
+.section-intro-wrapper{
+  position: relative;
+  padding: 20% 5%;
+  border-bottom: 2px solid var(--primary-pink);
+  padding-bottom: 25rem;
+}
+
+.section-detail-wrapper{
+  position: relative;
+  padding: 20% 5%;
+}
+
+.section-heading{
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.8;
+  margin-top: 4rem;
+}
+
+.section-text{
+  line-height: 2;
+  margin-top: 1.5rem;
+  font-size: 16px;
+}
+
+/* Section decoration ---------------------------------------------------------------------------------*/
+
+.section-title{
+  position: relative;
+  color: var(--primary-pink);
+}
+
+.section-title-text{
+  display: block;
+  font-size: 50px;
+  font-weight: 500;
+  transform-origin: left;
+  transform: skewY(20deg);
+  z-index: 5;
+  text-transform: uppercase;
+}
+
+.styleOne,
+.styleTwo,
+.styleThree{
+  position: absolute;
+  display: block;
+  width: 100%;
+  max-width: 20rem;
+  height: 5rem;
+  border: 1px solid var(--primary-pink);
+  transform-origin: left;
+  transform: skewY(-20deg);
+}
+
+.styleOne{
+  top: 0;
+}
+
+.styleTwo{
+  top:7rem
+}
+
+.styleThree{
+  top:7rem;
+  transform: skewY(20deg);
+  background-color: var(--primary-pink);
+}
+
+.section-number{
+  position: absolute;
+  bottom: 15px;
+  right: 0;
+  color: var(--primary-pink);
+  font-size: 24px;
+}
 /* Hero section ---------------------------------------------------------------------------------*/
 
 .hero{
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 }
 

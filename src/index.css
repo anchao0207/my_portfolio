@@ -4,6 +4,10 @@
   /* line-height: 24px; */
   font-weight: 400;
 
+  --text-black: #333332;
+  --primary-color: #faf4e5;
+  --primary-pink: #e5a1aa;
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -28,6 +32,7 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
+  color: var(--text-black);
 }
 
 h1 {
