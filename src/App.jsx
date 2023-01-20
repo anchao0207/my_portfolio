@@ -1,6 +1,12 @@
+import React from 'react';
 import "./App.css";
 import Experience from "./Experience/Experience";
 import { useEffect, useRef } from "react";
+import {ReactComponent as Sun} from './assets/sun.svg';
+import {ReactComponent as Moon} from './assets/moon.svg';
+
+
+
 
 function App() {
   useEffect(() => {
@@ -15,6 +21,15 @@ function App() {
       </div>
 
       <div className="page">
+
+        <div className="toggle-bar">
+          <div className="sun-wrapper"><Sun/></div>
+          <button className="toggle-button">
+            <div className="toggle-circle"></div>
+          </button>
+          <div className="moon-wrapper"><Moon/></div>
+        </div>
+
         <div className="page-wrapper">
           <section className="hero">
             <div className="hero-wrapper">
@@ -30,7 +45,7 @@ function App() {
             </div>
           </section>
 
-          <div className="section-margin"></div>
+          <div className="first-move section-margin"></div>
 
           <section className="first-section section left">
             <div className="section-intro-wrapper">
