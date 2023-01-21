@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -6,44 +6,44 @@
 
 /* Experience ---------------------------------------------------------------------------------*/
 
-.experience{
+.experience {
   position: fixed;
   width: 100%;
   height: 100vh;
 }
 
-.experience-canvas{
+.experience-canvas {
   width: 100%;
   height: 100%;
 }
 
 /*Page ---------------------------------------------------------------------------------*/
 
-.page{
+.page {
   z-index: 9999;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
-.page-wrapper{
+.page-wrapper {
   position: relative;
 }
 
 /*Toggle bar ---------------------------------------------------------------------------------*/
-.toggle-bar{
+.toggle-bar {
   position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  top:48px;
+  top: 48px;
   right: 48px;
   z-index: 9999;
 }
 
 .sun-wrapper,
-.moon-wrapper{
+.moon-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -51,7 +51,7 @@
   color: var(--color-text);
 }
 
-.toggle-button{
+.toggle-button {
   cursor: pointer;
   position: relative;
   width: 56px;
@@ -59,80 +59,98 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--primary-pink);
+  background-color: var(--color-green);
   border-radius: 999px;
   margin: 0px 16px;
   border: none;
-  box-shadow: rgba(149,157,165,0.2) 0px 8px 24px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.toggle-circle{
+.toggle-circle {
   position: absolute;
   left: 6px;
   border-radius: 50%;
   width: 20px;
   height: 20px;
-  background-color: var(--primary-color);
+  background-color: var(--color-background);
   transition: all 0.2s ease-in-out;
 }
 
-.toggle-button:hover .toggle-circle{
+.toggle-button:hover .toggle-circle {
   transform: scale(0.9);
 }
-/*Section Formatting ---------------------------------------------------------------------------------*/
-.section-margin{
-  height: 100rem;
-  width:100%;
+
+.slide {
+  left: 30px;
 }
 
-.section{
+/*Section Formatting ---------------------------------------------------------------------------------*/
+.section-margin {
+  height: 100rem;
+  width: 100%;
+}
+
+.section {
+  position: relative;
   width: 50%;
   padding: 20rem 4%;
   margin: 0;
-  background-color: var(--primary-color);
+  background-color: var(--color-background);
+  overflow: hidden;
 }
 
-.left{
+.left {
   margin-right: auto;
+  border-top-right-radius: 100px 100px;
+  border-bottom-right-radius: 0px 0px;
 }
 
-.right{
+.right {
   margin-left: auto;
+  border-top-left-radius: 100px 100px;
+  border-bottom-left-radius: 0px 0px;
 }
 
-.section-intro-wrapper{
+/*Section ---------------------------------------------------------------------------------*/
+
+
+.section-intro-wrapper {
   position: relative;
   padding: 20% 5%;
-  border-bottom: 2px solid var(--primary-pink);
+  border-bottom: 2px solid var(--color-green);
   padding-bottom: 25rem;
 }
 
-.section-detail-wrapper{
+.section-detail-wrapper {
   position: relative;
   padding: 20% 5%;
 }
 
-.section-heading{
+.section-heading {
   font-size: 18px;
   font-weight: 700;
   line-height: 1.8;
   margin-top: 4rem;
+  color: var(--color-text);
+
 }
 
-.section-text{
+.section-text {
   line-height: 2;
   margin-top: 1.5rem;
   font-size: 16px;
+  color: var(--color-text);
+
 }
 
 /* Section decoration ---------------------------------------------------------------------------------*/
 
-.section-title{
+.section-title {
   position: relative;
-  color: var(--primary-pink);
+  color: var(--color-green);
 }
 
-.section-title-text{
+.section-title-text {
   display: block;
   font-size: 50px;
   font-weight: 500;
@@ -140,50 +158,52 @@
   transform: skewY(20deg);
   z-index: 5;
   text-transform: uppercase;
+  color: var(--color-green);
 }
 
 .styleOne,
 .styleTwo,
-.styleThree{
+.styleThree {
   position: absolute;
   display: block;
   width: 100%;
   max-width: 20rem;
   height: 5rem;
-  border: 1px solid var(--primary-pink);
+  border: 1px solid var(--color-green);
   transform-origin: left;
   transform: skewY(-20deg);
 }
 
-.styleOne{
+.styleOne {
   top: 0;
 }
 
-.styleTwo{
-  top:7rem
+.styleTwo {
+  top: 7rem
 }
 
-.styleThree{
-  top:7rem;
+.styleThree {
+  top: 7rem;
   transform: skewY(20deg);
-  background-color: var(--primary-pink);
+  background-color: var(--color-green);
 }
 
-.section-number{
+.section-number {
   position: absolute;
   bottom: 15px;
   right: 0;
-  color: var(--primary-pink);
+  color: var(--color-green);
   font-size: 24px;
 }
+
 /* Hero section ---------------------------------------------------------------------------------*/
 
-.hero{
+.hero {
   width: 100%;
   height: 100vh;
 }
 
-.hero-wrapper{
+.hero-wrapper {
   position: relative;
   height: 100%;
   width: calc(100% - 6rem);
@@ -191,26 +211,35 @@
   max-width: 65rem;
 }
 
-.hero-main{
+.hero-main {
   position: absolute;
   bottom: 15%;
+  color: var(--color-text);
+
 }
 
-.hero-second{
+.hero-second {
   position: absolute;
   top: 15%;
   right: 0;
+  color: var(--color-text);
 }
 
-.hero-main-title{
+.hero-main-title {
   font-size: 4rem;
+  color: var(--color-text);
+
 }
 
-.hero-main-desc{
+.hero-main-desc {
   font-size: 1.5rem;
+  color: var(--color-text);
+
 }
 
-.hero-second-subheading{
+.hero-second-subheading {
   font-size: 2rem;
   text-transform: uppercase;
+  color: var(--color-text);
+
 }
