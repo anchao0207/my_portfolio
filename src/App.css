@@ -86,7 +86,7 @@
 
 /*Section Formatting ---------------------------------------------------------------------------------*/
 .section-margin {
-  height: 100rem;
+  height: 150rem;
   width: 100%;
 }
 
@@ -110,6 +110,8 @@
   border-top-left-radius: 100px 100px;
   border-bottom-left-radius: 0px 0px;
 }
+
+
 
 /*Section ---------------------------------------------------------------------------------*/
 
@@ -242,4 +244,37 @@
   text-transform: uppercase;
   color: var(--color-text);
 
+}
+
+/* Colors override ---------------------------------------------------------------------------------*/
+.pink-text{
+  color: var(--color-pink)
+}
+
+.pink-border{
+  border-color: var(--color-pink);
+}
+
+.pink-background{
+  background-color: var(--color-pink);
+}
+
+.brown-text{
+  color: var(--color-brown)
+}
+
+.brown-border{
+  border-color: var(--color-brown);
+}
+
+.brown-background{
+  background-color: var(--color-brown);
+}
+
+/* Meida Queries ---------------------------------------------------------------------------------*/
+
+@media (max-width:968px){
+  .section{
+    width: 100%;
+  }
 }
