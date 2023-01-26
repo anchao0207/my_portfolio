@@ -48,6 +48,9 @@ function App() {
           <div className="first-move section-margin"></div>
 
           <section className="first-section section left">
+          <div className="progress-wrapper progress-bar-wrapper-left">
+              <div className="progress-bar"></div>
+            </div>
             <div className="section-intro-wrapper">
               <h1 className="section-title">
                 <span className="section-title-text">About Me</span>
@@ -85,6 +88,9 @@ function App() {
           <div className="second-move section-margin"></div>
 
           <section className="second-section section right">
+          <div className="progress-wrapper progress-bar-wrapper-right">
+              <div className="progress-bar pink-background"></div>
+            </div>
             <div className="section-intro-wrapper pink-text pink-border">
               <h1 className="section-title pink-text pink-border pink-border">
               <span className="section-title-text pink-text">My Work</span>
@@ -122,6 +128,9 @@ function App() {
           <div className="third-move section-margin"></div>
 
           <section className="third-section section left">
+            <div className="progress-wrapper progress-bar-wrapper-left">
+              <div className="progress-bar brown-background"></div>
+            </div>
             <div className="section-intro-wrapper brown-text brown-border">
               <h1 className="section-title brown-text brown-border brown-border">
               <span className="section-title-text brown-text">Contact Me</span>
