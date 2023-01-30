@@ -6,16 +6,16 @@ import {ReactComponent as Sun} from './assets/sun.svg';
 import {ReactComponent as Moon} from './assets/moon.svg';
 
 
-
-
 function App() {
+  
   useEffect(() => {
     const experience = new Experience(
       document.querySelector(".experience-canvas")
     );
   });
+
   return (
-    <>
+    <div asscroll-container="true">
       <div className="experience">
         <canvas className="experience-canvas"></canvas>
       </div>
@@ -30,7 +30,7 @@ function App() {
           <div className="moon-wrapper"><Moon/></div>
         </div>
 
-        <div className="page-wrapper">
+        <div className="page-wrapper" asscroll="true">
           <section className="hero">
             <div className="hero-wrapper">
               <div className="hero-main">
@@ -166,7 +166,7 @@ function App() {
           </section>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

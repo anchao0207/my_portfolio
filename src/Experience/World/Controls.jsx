@@ -2,6 +2,8 @@ import * as THREE from "three";
 import Experience from "../Experience";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import ASScroll from '@ashthornton/asscroll';
+
 
 export default class Controls {
   constructor() {
@@ -14,8 +16,61 @@ export default class Controls {
     this.room = this.experience.world.room.actualRoom;
     gsap.registerPlugin(ScrollTrigger);
 
+    this.setSmoothScroll();
+
     this.setScrollTrigger();
+    
   }
+
+
+  setupASScroll() {
+    // https://github.com/ashthornton/asscroll
+    const asscroll = new ASScroll({
+        ease: 0.1,
+        disableRaf: true,
+    });
+
+    gsap.ticker.add(asscroll.update);
+
+    ScrollTrigger.defaults({
+        scroller: asscroll.containerElement,
+    });
+
+    ScrollTrigger.scrollerProxy(asscroll.containerElement, {
+        scrollTop(value) {
+            if (arguments.length) {
+                asscroll.currentPos = value;
+                return;
+            }
+            return asscroll.currentPos;
+        },
+        getBoundingClientRect() {
+            return {
+                top: 0,
+                left: 0,
+                width: window.innerWidth,
+                height: window.innerHeight,
+            };
+        },
+        fixedMarkers: true,
+    });
+
+    asscroll.on("update", ScrollTrigger.update);
+    ScrollTrigger.addEventListener("refresh", asscroll.resize);
+
+    requestAnimationFrame(() => {
+        asscroll.enable({
+            newScrollElements: document.querySelectorAll(
+                ".gsap-marker-start, .gsap-marker-end, [asscroll]"
+            ),
+        });
+    });
+    return asscroll;
+}
+
+setSmoothScroll() {
+    this.asscroll = this.setupASScroll();
+}
 
   setScrollTrigger() {
     ScrollTrigger.matchMedia({
@@ -90,7 +145,6 @@ export default class Controls {
       //Mobile
       "(max-width: 968px)": () => {
         console.log("mobile");
-        console.log(this.room.scale);
 
         //reset
         this.room.scale.set(0.5, 0.5, 0.5);
@@ -155,7 +209,7 @@ export default class Controls {
 
           if (section.classList.contains("right")) {
             gsap.to(section, {
-              borderTopLeftRadius: 10,
+              borderTopLeftRadius: 50,
               scrollTrigger: {
                 trigger: section,
                 start: "top bottom",
@@ -164,7 +218,7 @@ export default class Controls {
               },
             });
             gsap.to(section, {
-              borderBottomLeftRadius: 200,
+              borderBottomLeftRadius: 500,
               scrollTrigger: {
                 trigger: section,
                 start: "bottom bottom",
@@ -174,7 +228,7 @@ export default class Controls {
             });
           } else {
             gsap.to(section, {
-              borderTopRightRadius: 10,
+              borderTopRightRadius: 50,
               scrollTrigger: {
                 trigger: section,
                 start: "top bottom",
@@ -183,7 +237,7 @@ export default class Controls {
               },
             });
             gsap.to(section, {
-              borderBottomRightRadius: 200,
+              borderBottomRightRadius: 500,
               scrollTrigger: {
                 trigger: section,
                 start: "bottom bottom",
