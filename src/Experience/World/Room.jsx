@@ -43,6 +43,14 @@ export default class Room {
           map: this.resources.items.screen2,
         });
       }
+      if(child.name==="glass1" || child.name==="glass2"){
+        child.material = new THREE.MeshPhysicalMaterial();
+                child.material.roughness = 0;
+                child.material.color.set(0x555555);
+                child.material.ior = 3;
+                child.material.transmission = 1;
+                child.material.opacity = 1;
+      }
     });
 
     this.scene.add(this.actualRoom);
