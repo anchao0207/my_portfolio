@@ -2,8 +2,7 @@ import * as THREE from "three";
 import Experience from "../Experience";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import ASScroll from '@ashthornton/asscroll';
-
+import ASScroll from "@ashthornton/asscroll";
 
 export default class Controls {
   constructor() {
@@ -14,6 +13,12 @@ export default class Controls {
     this.time = this.experience.time;
     this.camera = this.experience.camera;
     this.room = this.experience.world.room.actualRoom;
+    this.room.children.forEach((child) => {
+      if (child.type === "PointLight") {
+        this.pointLight = child;
+        console.log(this.pointLight)
+      }
+    });
     this.circleFirst = this.experience.world.floor.circleFirst;
     this.circleSecond = this.experience.world.floor.circleSecond;
     this.circleThird = this.experience.world.floor.circleThird;
@@ -22,58 +27,57 @@ export default class Controls {
     this.setSmoothScroll();
 
     this.setScrollTrigger();
-    
   }
-
+  
 
   setupASScroll() {
     // https://github.com/ashthornton/asscroll
     const asscroll = new ASScroll({
-        ease: 0.1,
-        disableRaf: true,
+      ease: 0.1,
+      disableRaf: true,
     });
 
     gsap.ticker.add(asscroll.update);
 
     ScrollTrigger.defaults({
-        scroller: asscroll.containerElement,
+      scroller: asscroll.containerElement,
     });
 
     ScrollTrigger.scrollerProxy(asscroll.containerElement, {
-        scrollTop(value) {
-            if (arguments.length) {
-                asscroll.currentPos = value;
-                return;
-            }
-            return asscroll.currentPos;
-        },
-        getBoundingClientRect() {
-            return {
-                top: 0,
-                left: 0,
-                width: window.innerWidth,
-                height: window.innerHeight,
-            };
-        },
-        fixedMarkers: true,
+      scrollTop(value) {
+        if (arguments.length) {
+          asscroll.currentPos = value;
+          return;
+        }
+        return asscroll.currentPos;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
+      },
+      fixedMarkers: true,
     });
 
     asscroll.on("update", ScrollTrigger.update);
     ScrollTrigger.addEventListener("refresh", asscroll.resize);
 
     requestAnimationFrame(() => {
-        asscroll.enable({
-            newScrollElements: document.querySelectorAll(
-                ".gsap-marker-start, .gsap-marker-end, [asscroll]"
-            ),
-        });
+      asscroll.enable({
+        newScrollElements: document.querySelectorAll(
+          ".gsap-marker-start, .gsap-marker-end, [asscroll]"
+        ),
+      });
     });
     return asscroll;
-}
+  }
 
-setSmoothScroll() {
+  setSmoothScroll() {
     this.asscroll = this.setupASScroll();
-}
+  }
 
   setScrollTrigger() {
     ScrollTrigger.matchMedia({
@@ -81,6 +85,7 @@ setSmoothScroll() {
       "(min-width: 969px)": () => {
         console.log("desktop");
         this.room.scale.set(1, 1, 1);
+        this.pointLight.distance = 1;
 
         //first section ----------------------------------------------------------
         this.firstMoveTimeline = new gsap.timeline({
@@ -129,7 +134,23 @@ setSmoothScroll() {
               z: 3,
             },
             "same"
-          );
+          ).to(
+            this.pointLight,
+            {
+                distance:3,
+                intensity:6,
+            },
+            "same"
+        ).to(
+          this.pointLight.position,
+          {
+              x:0.45,
+              y:1.2,
+              z:1
+          },
+          "same"
+        )
+        
 
         // third section ----------------------------------------------------------
         this.thirdMoveTimeline = new gsap.timeline({
@@ -141,16 +162,18 @@ setSmoothScroll() {
             invalidateOnRefresh: true,
           },
         }).to(this.camera.orthographicCamera.position, {
-          y: -2,
-          x: -5,
+          x: 0,
+          y: 4,
         });
       },
+
       //Mobile
       "(max-width: 968px)": () => {
         console.log("mobile");
 
         //reset
         this.room.scale.set(0.5, 0.5, 0.5);
+        this.pointLight.distance = 0.5;
 
         //first section ----------------------------------------------------------
         this.firstMoveTimeline = new gsap.timeline({
@@ -161,11 +184,23 @@ setSmoothScroll() {
             scrub: 0.8,
             invalidateOnRefresh: true,
           },
-        }).to(this.room.scale, {
-          x: 0.7,
-          y: 0.7,
-          z: 0.7,
-        });
+        })
+          .to(
+            this.room.scale,
+            {
+              x: 0.7,
+              y: 0.7,
+              z: 0.7,
+            },
+            "same"
+          )
+          .to(
+            this.pointLight,
+            {
+              distance: 0.7,
+            },
+            "same"
+          );
         //second section ----------------------------------------------------------
         this.secondMoveTimeline = new gsap.timeline({
           scrollTrigger: {
@@ -249,17 +284,17 @@ setSmoothScroll() {
               },
             });
           }
-          gsap.from(this.progressBar,{
-            scaleY:0,
-            scrollTrigger:{
-              trigger:section,
-              start:"top top",
-              end:"bottom bottom",
-              scrub:0.4,
+          gsap.from(this.progressBar, {
+            scaleY: 0,
+            scrollTrigger: {
+              trigger: section,
+              start: "top top",
+              end: "bottom bottom",
+              scrub: 0.4,
               pin: this.progressWrapper,
               pinSpacing: false,
-            }
-          })
+            },
+          });
         });
 
         //Circle animation
@@ -272,12 +307,11 @@ setSmoothScroll() {
             scrub: 0.8,
             invalidateOnRefresh: true,
           },
-        }).to(this.circleFirst.scale,{
-          x:3,
-          y:3,
-          z:3,
-        })
-        
+        }).to(this.circleFirst.scale, {
+          x: 3,
+          y: 3,
+          z: 3,
+        });
 
         //second section ----------------------------------------------------------
         this.secondMoveTimeline = new gsap.timeline({
@@ -288,12 +322,18 @@ setSmoothScroll() {
             scrub: 0.8,
             invalidateOnRefresh: true,
           },
-        }).to(this.circleSecond.scale,{
-          x:3,
-          y:3,
-          z:3,
-        })
-        
+        }).to(this.circleSecond.scale, {
+          x: 3,
+          y: 3,
+          z: 3,
+        },"same").to(
+          this.pointLight,
+          {
+              distance:3,
+              intensity:6,
+          },
+          "same"
+      );
 
         // third section ----------------------------------------------------------
         this.thirdMoveTimeline = new gsap.timeline({
@@ -304,12 +344,15 @@ setSmoothScroll() {
             scrub: 0.8,
             invalidateOnRefresh: true,
           },
-        }).to(this.circleThird.scale,{
-          x:3,
-          y:3,
-          z:3,
+        }).to(this.circleThird.scale, {
+          x: 3,
+          y: 3,
+          z: 3,
+        }).to(this.camera.orthographicCamera.position,{
+          x:1.3,
+          y:7,
         })
-
+        ;
       },
     });
   }
