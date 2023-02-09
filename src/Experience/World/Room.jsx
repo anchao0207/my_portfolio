@@ -24,7 +24,6 @@ export default class Room {
   }
 
   setModel() {
-    console.log(this.actualRoom.children);
     this.actualRoom.children.forEach((child) => {
       child.castShadow = true;
       child.receiveShadow = true;
@@ -55,7 +54,6 @@ export default class Room {
         child.material.opacity = 1;
       }
       if (child.name === "bounds" || child.name === "emiiter") {
-        console.log("yes");
         child.material = new THREE.MeshPhysicalMaterial();
         child.material.roughness = 0;
         child.material.color.set(0x549dd2);
@@ -64,7 +62,6 @@ export default class Room {
         child.material.opacity = 1;
       }
       if (child.name === "lampglass") {
-        console.log(child.position)
         child.material = new THREE.MeshPhysicalMaterial();
         child.material.roughness = 0;
         child.material.color.set(0x549dd2);
@@ -91,8 +88,16 @@ export default class Room {
         child.material.roughness = 0;
         child.material.color.set(0xff1100);
         child.material.specular.set(0xfafafa);
+        child.material.opacity = 0;
       }
+      
+      child.scale.set(0,0,0);
 
+      if (child.name === "Cube") {
+        child.position.set(0, 0, 0);
+        child.rotation.y = Math.PI / 4;
+      }
+      console.log(child)
       this.roomChildren[child.name.toLowerCase()] = child;
     });
 

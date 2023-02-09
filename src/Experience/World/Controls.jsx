@@ -16,7 +16,6 @@ export default class Controls {
     this.room.children.forEach((child) => {
       if (child.type === "PointLight") {
         this.pointLight = child;
-        console.log(this.pointLight)
       }
     });
     this.circleFirst = this.experience.world.floor.circleFirst;
@@ -28,7 +27,6 @@ export default class Controls {
 
     this.setScrollTrigger();
   }
-  
 
   setupASScroll() {
     // https://github.com/ashthornton/asscroll
@@ -83,7 +81,6 @@ export default class Controls {
     ScrollTrigger.matchMedia({
       //Desktop
       "(min-width: 969px)": () => {
-        console.log("desktop");
         this.room.scale.set(1, 1, 1);
         this.pointLight.distance = 1;
 
@@ -134,23 +131,24 @@ export default class Controls {
               z: 3,
             },
             "same"
-          ).to(
+          )
+          .to(
             this.pointLight,
             {
-                distance:3,
-                intensity:6,
+              distance: 3,
+              intensity: 6,
             },
             "same"
-        ).to(
-          this.pointLight.position,
-          {
-              x:0.45,
-              y:1.2,
-              z:1
-          },
-          "same"
-        )
-        
+          )
+          .to(
+            this.pointLight.position,
+            {
+              x: 0.45,
+              y: 1.2,
+              z: 1,
+            },
+            "same"
+          );
 
         // third section ----------------------------------------------------------
         this.thirdMoveTimeline = new gsap.timeline({
@@ -169,7 +167,6 @@ export default class Controls {
 
       //Mobile
       "(max-width: 968px)": () => {
-        console.log("mobile");
 
         //reset
         this.room.scale.set(0.5, 0.5, 0.5);
@@ -227,7 +224,14 @@ export default class Controls {
               y: 10,
             },
             "same"
-          );
+          ).to(
+            this.pointLight,
+            {
+              distance: 3,
+              intensity: 6,
+            },
+            "same"
+          );;
         // third section ----------------------------------------------------------
         this.thirdMoveTimeline = new gsap.timeline({
           scrollTrigger: {
@@ -237,7 +241,10 @@ export default class Controls {
             scrub: 0.8,
             invalidateOnRefresh: true,
           },
-        });
+        }).to(this.camera.orthographicCamera.position, {
+          x: 1.3,
+          y: 7,
+        });;
       },
       all: () => {
         this.sections = document.querySelectorAll(".section");
@@ -322,18 +329,17 @@ export default class Controls {
             scrub: 0.8,
             invalidateOnRefresh: true,
           },
-        }).to(this.circleSecond.scale, {
-          x: 3,
-          y: 3,
-          z: 3,
-        },"same").to(
-          this.pointLight,
-          {
-              distance:3,
-              intensity:6,
-          },
-          "same"
-      );
+        })
+          .to(
+            this.circleSecond.scale,
+            {
+              x: 3,
+              y: 3,
+              z: 3,
+            },
+            "same"
+          )
+          
 
         // third section ----------------------------------------------------------
         this.thirdMoveTimeline = new gsap.timeline({
@@ -344,15 +350,13 @@ export default class Controls {
             scrub: 0.8,
             invalidateOnRefresh: true,
           },
-        }).to(this.circleThird.scale, {
-          x: 3,
-          y: 3,
-          z: 3,
-        }).to(this.camera.orthographicCamera.position,{
-          x:1.3,
-          y:7,
         })
-        ;
+          .to(this.circleThird.scale, {
+            x: 3,
+            y: 3,
+            z: 3,
+          })
+          
       },
     });
   }
