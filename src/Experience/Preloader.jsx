@@ -196,20 +196,20 @@ export default class Preloader extends EventEmitter {
             },
             "same2"
           );
-          if (key === "chair") {
-            this.secondTimeline.to(
-              this.roomChildren[key].rotation,
-              {
-                y: 5.4 * Math.PI,
-                ease: "power2.out",
-                duration: 1.5,
-                onComplete: resolve,
-              },
-              "same2"
-            );
-          }
         }
       });
+      this.secondTimeline.to(
+        this.roomChildren.chair.rotation,
+        {
+          y: 5.4 * Math.PI,
+          ease: "power2.out",
+          duration: 1.5,
+        },
+        "same2"
+      ).to(this.roomChildren.pointLight,{
+        intensity:1,
+        onComplete: resolve,
+      },"same2")
     });
   }
 

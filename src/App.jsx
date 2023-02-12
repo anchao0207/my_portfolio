@@ -4,6 +4,8 @@ import Experience from "./Experience/Experience";
 import { useEffect, useRef } from "react";
 import {ReactComponent as Sun} from './assets/sun.svg';
 import {ReactComponent as Moon} from './assets/moon.svg';
+import {ReactComponent as MouseScroll} from './assets/mouse-scroll.svg';
+import {ReactComponent as FingerScroll} from './assets/finger-scroll.svg';
 
 
 function App() {
@@ -34,7 +36,9 @@ function App() {
           <section className="hero">
             <div className="hero-wrapper">
 
+              {/* Preloader */}
               <div className="intro-text">Welcome to my portfolio!</div>
+              <div className="scroll-svg-wrapper"><MouseScroll/></div>
               <div className="hero-main">
                 <h1 className="hero-main-title">AN TRIEU</h1>
                 <p className="hero-main-desc">DECS</p>

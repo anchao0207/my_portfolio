@@ -27,7 +27,7 @@ export default class Room {
     this.actualRoom.children.forEach((child) => {
       child.castShadow = true;
       child.receiveShadow = true;
-
+      
       if (child instanceof THREE.Group) {
         child.children.forEach((groupchild) => {
           groupchild.castShadow = true;
@@ -90,6 +90,8 @@ export default class Room {
         child.material.specular.set(0xfafafa);
         child.material.opacity = 0;
       }
+
+      
       
       child.scale.set(0,0,0);
 
@@ -100,7 +102,7 @@ export default class Room {
       this.roomChildren[child.name.toLowerCase()] = child;
     });
 
-    const light = new THREE.PointLight(0xff1100, 1, 1);
+    const light = new THREE.PointLight(0xff1100, 0, 1);
     light.position.set(0.436536, 1.16978, 0.958114);
     light.shadow = true;
     this.actualRoom.add(light);

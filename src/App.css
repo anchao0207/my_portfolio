@@ -46,6 +46,26 @@
   font-weight: 500;
   font-size: 16px;
   transform: translate(-50%,-50%);
+  color: var(--color-text)
+}
+
+.scroll-svg-wrapper{
+  width: 48px;
+  position: absolute;
+  top:90%;
+  left:50%;
+  color: var(--color-text);
+  transform: translate(-50%,-50%);
+  animation: bounce 0.5s ease-in alternate infinite;
+}
+
+@keyframes bounce {
+  0%{
+    transform: translateY(0)
+  }
+  100%{
+    transform: translateY(8px)
+  }
 }
 
 /*Toggle bar ---------------------------------------------------------------------------------*/

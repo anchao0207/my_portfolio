@@ -148,7 +148,7 @@ export default class Controls {
             this.pointLight.position,
             {
               x: 0.45,
-              y: 1.2,
+              y: 1.08,
               z: 1,
             },
             "same"
