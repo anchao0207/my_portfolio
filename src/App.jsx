@@ -15,12 +15,12 @@ function App() {
   });
 
   return (
-    <div asscroll-container="true">
-      <div className="experience">
+    <div >
+      <div className="experience" asscroll-container="true">
         <canvas className="experience-canvas"></canvas>
       </div>
 
-      <div className="page">
+      <div className="page" >
 
         <div className="toggle-bar">
           <div className="sun-wrapper"><Sun/></div>
@@ -33,14 +33,16 @@ function App() {
         <div className="page-wrapper" asscroll="true">
           <section className="hero">
             <div className="hero-wrapper">
+
+              <div className="intro-text">Welcome to my portfolio!</div>
               <div className="hero-main">
                 <h1 className="hero-main-title">AN TRIEU</h1>
                 <p className="hero-main-desc">DECS</p>
               </div>
 
               <div className="hero-second">
-                <p className="hero-second-subheading">An Trieu</p>
-                <p className="hero-second-subheading">Portfolio</p>
+                <p className="hero-second-subheading first-sub">An Trieu</p>
+                <p className="hero-second-subheading second-sub">Portfolio</p>
               </div>
             </div>
           </section>

@@ -23,6 +23,8 @@ export default class Controls {
     this.circleThird = this.experience.world.floor.circleThird;
     gsap.registerPlugin(ScrollTrigger);
 
+    document.querySelector(".page").style.overflow = "visible"
+
     this.setSmoothScroll();
 
     this.setScrollTrigger();
@@ -81,6 +83,8 @@ export default class Controls {
     ScrollTrigger.matchMedia({
       //Desktop
       "(min-width: 969px)": () => {
+        console.log("fired desktop")
+
         this.room.scale.set(1, 1, 1);
         this.pointLight.distance = 1;
 
@@ -167,10 +171,10 @@ export default class Controls {
 
       //Mobile
       "(max-width: 968px)": () => {
-
+        console.log("fired mobile")
         //reset
-        this.room.scale.set(0.5, 0.5, 0.5);
-        this.pointLight.distance = 0.5;
+        this.room.scale.set(1, 1, 1);
+        this.pointLight.distance = 1;
 
         //first section ----------------------------------------------------------
         this.firstMoveTimeline = new gsap.timeline({
@@ -185,16 +189,16 @@ export default class Controls {
           .to(
             this.room.scale,
             {
-              x: 0.7,
-              y: 0.7,
-              z: 0.7,
+              x: 1.2,
+              y: 1.2,
+              z: 1.2,
             },
             "same"
           )
           .to(
             this.pointLight,
             {
-              distance: 0.7,
+              distance: 1.2,
             },
             "same"
           );

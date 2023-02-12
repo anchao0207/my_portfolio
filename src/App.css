@@ -8,7 +8,7 @@
 
 .experience {
   position: fixed;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
 
 }
@@ -18,17 +18,34 @@
   height: 100%;
 }
 
+
 /*Page ---------------------------------------------------------------------------------*/
 
-.page {
-  z-index: 9999;
+.page{
+  z-index:99999;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
+  
 }
 
 .page-wrapper {
   position: relative;
+}
+
+/*Preloader ---------------------------------------------------------------------------------*/
+.animatedis{
+  display: inline-block;
+  transform: translateY(100%);
+}
+
+.intro-text{
+  position: absolute;
+  top:50%;
+  left:50%;
+  font-weight: 500;
+  font-size: 16px;
+  transform: translate(-50%,-50%);
 }
 
 /*Toggle bar ---------------------------------------------------------------------------------*/
@@ -86,15 +103,15 @@
 }
 
 /*Section Formatting ---------------------------------------------------------------------------------*/
-.section-margin {
-  height: 150rem;
+.section-margin{
+  height: 3000px;
   width: 100%;
 }
 
-.section {
+.section{
   position: relative;
   width: 50%;
-  padding: 20rem 4%;
+  padding: 1000px 4%;
   margin: 0;
   background-color: var(--color-background);
   overflow: hidden;

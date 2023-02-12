@@ -97,7 +97,6 @@ export default class Room {
         child.position.set(0, 0, 0);
         child.rotation.y = Math.PI / 4;
       }
-      console.log(child)
       this.roomChildren[child.name.toLowerCase()] = child;
     });
 
