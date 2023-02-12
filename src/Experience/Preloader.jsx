@@ -40,6 +40,15 @@ export default class Preloader extends EventEmitter {
     return new Promise((resolve) => {
       this.timeline = new gsap.timeline();
       // this.timeline.set(".animatedis", { y: 0, yPercent: 100 });
+      this.timeline.set(".animatedis", {y:0,yPercent:100});
+      this.timeline
+      .to(".preloader", {
+        opacity: 0,
+        delay: 1,
+        onComplete: ()=> {
+          document.querySelector(".preloader").classList.add("hidden")
+        }
+      })
 
       if (this.device === "desktop") {
         this.timeline
@@ -71,11 +80,15 @@ export default class Preloader extends EventEmitter {
           });
       }
       this.timeline.to(".intro-text .animatedis", {
-        yPercent: -100,
+        yPercent: 0,
         stagger: 0.05,
         ease: "back.out(1.7)",
         onComplete: resolve,
-      });
+      }).to(".scroll-svg-wrapper", {
+        opacity: 1,
+      },"fadein").to(".toggle-bar", {
+        opacity: 1,
+      },"fadein");
     });
   }
 
@@ -89,7 +102,9 @@ export default class Preloader extends EventEmitter {
           yPercent: 100,
           stagger: 0.05,
           ease: "back.in(1.7)",
-        })
+        },"fadeout").to(".scroll-svg-wrapper", {
+          opacity: 0,
+        },"fadeout")
         .to(
           this.room.position,
           {
@@ -149,7 +164,7 @@ export default class Preloader extends EventEmitter {
         .to(
           ".hero-main-title .animatedis",
           {
-            yPercent: -100,
+            yPercent: 0,
             stagger: 0.07,
             ease: "back.in(1.7)",
           },
@@ -158,7 +173,7 @@ export default class Preloader extends EventEmitter {
         .to(
           ".hero-main-desc .animatedis",
           {
-            yPercent: -100,
+            yPercent: 0,
             stagger: 0.07,
             ease: "back.in(1.7)",
           },
@@ -167,7 +182,7 @@ export default class Preloader extends EventEmitter {
         .to(
           ".first-sub .animatedis",
           {
-            yPercent: -100,
+            yPercent: 0,
             stagger: 0.07,
             ease: "back.in(1.7)",
           },
@@ -176,7 +191,7 @@ export default class Preloader extends EventEmitter {
         .to(
           ".second-sub .animatedis",
           {
-            yPercent: -100,
+            yPercent: 0,
             stagger: 0.07,
             ease: "back.in(1.7)",
           },
@@ -208,8 +223,10 @@ export default class Preloader extends EventEmitter {
         "same2"
       ).to(this.roomChildren.pointLight,{
         intensity:1,
+      },"same2").to(".scroll-svg-wrapper", {
+        opacity: 1,
         onComplete: resolve,
-      },"same2")
+      })
     });
   }
 

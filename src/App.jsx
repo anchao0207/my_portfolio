@@ -2,6 +2,7 @@ import React from 'react';
 import "./App.css";
 import Experience from "./Experience/Experience";
 import { useEffect, useRef } from "react";
+import useMediaQuery from "./Experience/Utils/useMediaQuery";
 import {ReactComponent as Sun} from './assets/sun.svg';
 import {ReactComponent as Moon} from './assets/moon.svg';
 import {ReactComponent as MouseScroll} from './assets/mouse-scroll.svg';
@@ -9,7 +10,8 @@ import {ReactComponent as FingerScroll} from './assets/finger-scroll.svg';
 
 
 function App() {
-  
+  const isDesktop = useMediaQuery('(min-width: 960px)');
+
   useEffect(() => {
     const experience = new Experience(
       document.querySelector(".experience-canvas")
@@ -17,9 +19,20 @@ function App() {
   });
 
   return (
-    <div >
-      <div className="experience" asscroll-container="true">
+    <div asscroll-container="true">
+      <div className="experience" >
         <canvas className="experience-canvas"></canvas>
+      </div>
+
+      {/* Preloader */}
+      <div className="preloader">
+        <div className="preloader-wrapper">
+          <div className="loading">
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+          </div>
+        </div>
       </div>
 
       <div className="page" >
@@ -36,9 +49,11 @@ function App() {
           <section className="hero">
             <div className="hero-wrapper">
 
-              {/* Preloader */}
+              {/* Intro */}
               <div className="intro-text">Welcome to my portfolio!</div>
-              <div className="scroll-svg-wrapper"><MouseScroll/></div>
+              <div className="scroll-svg-wrapper">
+                {isDesktop ? <MouseScroll/> : <FingerScroll/>}
+              </div>
               <div className="hero-main">
                 <h1 className="hero-main-title">AN TRIEU</h1>
                 <p className="hero-main-desc">DECS</p>

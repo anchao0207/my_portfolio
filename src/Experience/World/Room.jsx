@@ -111,7 +111,7 @@ export default class Room {
 
     const sphereSize = 0.1;
     const pointLightHelper = new THREE.PointLightHelper(light, sphereSize);
-    this.scene.add(pointLightHelper);
+    // this.scene.add(pointLightHelper);
 
     this.scene.add(this.actualRoom);
   }

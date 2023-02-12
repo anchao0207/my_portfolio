@@ -25,7 +25,13 @@ export default class Controls {
 
     document.querySelector(".page").style.overflow = "visible"
 
-    this.setSmoothScroll();
+    if (
+      !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+      )
+  ) {
+      this.setSmoothScroll();
+  }
 
     this.setScrollTrigger();
   }
@@ -87,6 +93,8 @@ export default class Controls {
 
         this.room.scale.set(1, 1, 1);
         this.pointLight.distance = 1;
+        this.camera.orthographicCamera.position.set(0, 7, 10);
+        this.room.position.set(0, 0, 0);
 
         //first section ----------------------------------------------------------
         this.firstMoveTimeline = new gsap.timeline({
@@ -174,7 +182,9 @@ export default class Controls {
         console.log("fired mobile")
         //reset
         this.room.scale.set(1, 1, 1);
+        this.room.position.set(0, 0, 0);
         this.pointLight.distance = 1;
+        this.camera.orthographicCamera.position.set(0, 6.5, 10);
 
         //first section ----------------------------------------------------------
         this.firstMoveTimeline = new gsap.timeline({
