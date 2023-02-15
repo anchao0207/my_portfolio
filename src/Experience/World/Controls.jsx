@@ -21,6 +21,7 @@ export default class Controls {
     this.circleFirst = this.experience.world.floor.circleFirst;
     this.circleSecond = this.experience.world.floor.circleSecond;
     this.circleThird = this.experience.world.floor.circleThird;
+    this.circleFourth = this.experience.world.floor.circleFourth;
     gsap.registerPlugin(ScrollTrigger);
 
     document.querySelector(".page").style.overflow = "visible"
@@ -175,6 +176,48 @@ export default class Controls {
           x: 0,
           y: 4,
         });
+
+        // fourth section ----------------------------------------------------------
+        this.thirdMoveTimeline = new gsap.timeline({
+          scrollTrigger: {
+            trigger: ".fourth-move",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.8,
+            invalidateOnRefresh: true,
+          },
+        }).to(this.camera.orthographicCamera.position, {
+          x: 0,
+          y: 7,
+          z: 10,
+        },"same").to(
+          this.room.scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+          },
+          "same"
+        )
+        .to(
+          this.pointLight,
+          {
+            distance: 1,
+            intensity: 1,
+          },
+          "same"
+        )
+        .to(
+          this.room.position,
+          {
+            x: () => {
+              return this.sizes.width * -0.002;
+            },
+            y: 0,
+            z: 0,
+          },
+          "same"
+        );
       },
 
       //Mobile
@@ -184,7 +227,7 @@ export default class Controls {
         this.room.scale.set(1, 1, 1);
         this.room.position.set(0, 0, 0);
         this.pointLight.distance = 1;
-        this.camera.orthographicCamera.position.set(0, 6.5, 10);
+        this.camera.orthographicCamera.position.set(0, 7, 10);
 
         //first section ----------------------------------------------------------
         this.firstMoveTimeline = new gsap.timeline({
@@ -351,7 +394,6 @@ export default class Controls {
               y: 3,
               z: 3,
             },
-            "same"
           )
           
 
@@ -370,7 +412,21 @@ export default class Controls {
             y: 3,
             z: 3,
           })
-          
+
+          this.fourthMoveTimeline = new gsap.timeline({
+            scrollTrigger: {
+              trigger: ".fourth-move",
+              start: "top top",
+              end: "bottom bottom",
+              scrub: 0.8,
+              invalidateOnRefresh: true,
+            },
+          })
+            .to(this.circleFourth.scale, {
+              x: 3,
+              y: 3,
+              z: 3,
+            })
       },
     });
   }

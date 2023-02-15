@@ -60,21 +60,21 @@ export default class Preloader extends EventEmitter {
             duration: 0.7,
           })
           .to(this.room.position, {
-            x: -2,
+            x: -1.5,
             ease: "power1.out",
             duration: 0.7,
           });
       } else {
         this.timeline
           .to(this.roomChildren.cube.scale, {
-            x: 3,
-            y: 3,
-            z: 3,
+            x: 2,
+            y: 2,
+            z: 2,
             ease: "back.out(2.5)",
             duration: 0.7,
           })
           .to(this.room.position, {
-            z: -2,
+            z: -1.5,
             ease: "power1.out",
             duration: 0.7,
           });
@@ -279,9 +279,9 @@ export default class Preloader extends EventEmitter {
 
   move() {
     if (this.device === "desktop") {
-      this.room.position.set(-2, 0, 0);
+      this.room.position.set(-1.5, 0, 0);
     } else {
-      this.room.position.set(0, 0, -2);
+      this.room.position.set(0, 0, -1.5);
     }
   }
 

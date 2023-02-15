@@ -9,21 +9,18 @@ export default class Environment {
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
 
-    // this.gui = new gui({container:document.querySelector(".hero-main")});
     this.obj = {
       colorObj: { r: 0, g: 0, b: 0 },
       intensity: 3,
     };
 
     this.setSunlight();
-    // this.setGUI();
   }
 
   setGUI() {
     this.gui.addColor(this.obj, "colorObj").onChange(() => {
       this.sunLight.color.copy(this.obj.colorObj);
       this.ambientLight.color.copy(this.obj.colorObj);
-      console.log(this.obj.colorObj);
     });
     this.gui.add(this.obj, "intensity", 0, 10).onChange(() => {
       this.sunLight.intensity = this.obj.intensity;
