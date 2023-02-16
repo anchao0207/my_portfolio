@@ -260,8 +260,7 @@
   line-height: 1.8;
   margin-top: 4rem;
   color: var(--color-text);
-
-}
+} 
 
 .section-text {
   line-height: 2;
@@ -323,6 +322,31 @@
   color: var(--color-green);
   font-size: 24px;
 }
+
+.third-section
+a {
+  color: var(--color-text);
+  background-color: transparent;
+}
+
+.third-section
+a:hover {
+  color: var(--color-brown-light);
+  background-color: transparent;
+}
+
+.fourth-section
+a {
+  color: var(--color-text);
+  background-color: transparent;
+}
+
+.fourth-section
+a:hover {
+  color: var(--color-green-light);
+  background-color: transparent;
+}
+
 
 /* Hero section ---------------------------------------------------------------------------------*/
 

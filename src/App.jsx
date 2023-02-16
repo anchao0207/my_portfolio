@@ -296,7 +296,7 @@ function App() {
                 </li>
               </ul>
               <h3 className="section-heading">
-                <a href="" target="_blank">
+                <a href="https://nmr-anchao0207.vercel.app/" target="_blank">
                   NMR Project
                 </a>
               </h3>
