@@ -292,7 +292,7 @@ function App() {
                   Spacy and BeautifulSoup, JSON for data processing.
                 </li>
                 <li>
-                  This project is used for the purpose of creating an convinient and high usability environment in order to help students with their courses registration during the registration period.
+                  This project is used for the purpose of creating an convenient and high usability environment in order to help students with their courses registration during the registration period.
                 </li>
               </ul>
               <h3 className="section-heading">
